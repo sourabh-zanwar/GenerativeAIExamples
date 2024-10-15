@@ -98,9 +98,9 @@ def build_page(client: chat_client.ChatClient) -> gr.Blocks:
 
         # TTS output box
         # visible so that users can stop or replay playback
-        with gr.Row(visible=False):
+        with gr.Row():
             output_audio = gr.Audio(
-                label="Synthesized Speech",
+                label="Agent Response",
                 autoplay=True,
                 interactive=False,
                 streaming=True,
