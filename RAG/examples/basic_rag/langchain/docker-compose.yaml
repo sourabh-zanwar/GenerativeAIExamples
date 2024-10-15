@@ -73,7 +73,7 @@ services:
       dockerfile: Dockerfile
       args:
         # select UI type, supported model default, speech
-        PLAYGROUND_MODE: ${PLAYGROUND_MODE:-default}
+        PLAYGROUND_MODE: ${PLAYGROUND_MODE:-speech}
     command: --port 8090
     environment:
       # URL or chain server container
@@ -85,6 +85,12 @@ services:
       OTEL_EXPORTER_OTLP_PROTOCOL: grpc
       # enable observability in rag playground
       ENABLE_TRACING: false
+      # speech vars
+      RIVA_API_URI: grpc.nvcf.nvidia.com:443
+      NVIDIA_API_KEY: ${NVIDIA_API_KEY}
+      RIVA_ASR_FUNCTION_ID: 1598d209-5e27-4d3c-8079-4751568b1081 # nvidia/parakeet-ctc-riva-1-1b
+      RIVA_TTS_FUNCTION_ID: 5e607c81-7aa6-44ce-a11d-9e08f0a3fe49 # nvidia/radtts-hifigan-riva
+      TTS_SAMPLE_RATE: 48000
     ports:
     - "8090:8090"
     expose:
